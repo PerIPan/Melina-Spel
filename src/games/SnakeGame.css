@@ -1,0 +1,403 @@
+.snake-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: screenEnter 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.snake-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.snake-back-btn,
+.snake-sticker-btn {
+  background: var(--card-bg);
+  border: none;
+  border-radius: 14px;
+  padding: 0.6rem 1.2rem;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s;
+}
+
+.snake-back-btn:hover,
+.snake-sticker-btn:hover {
+  transform: scale(1.05);
+}
+
+.snake-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.snake-scoreboard {
+  display: flex;
+  gap: 32px;
+}
+
+.snake-score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.snake-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.snake-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.snake-grid {
+  position: relative;
+  background: var(--card-bg);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.snake-cell {
+  position: absolute;
+  border-radius: 4px;
+}
+
+.snake-head {
+  background: #00d2aa;
+  box-shadow: 0 0 10px rgba(0, 210, 170, 0.6);
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.snake-body {
+  background: #00b894;
+  opacity: 0.85;
+  z-index: 1;
+}
+
+.snake-food {
+  background: #ff7675;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255, 118, 117, 0.7);
+  animation: snakePulse 0.8s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+@keyframes snakePulse {
+  from { transform: scale(0.85); opacity: 0.8; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.snake-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+  border-radius: 16px;
+}
+
+.snake-overlay p {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.snake-overlay strong {
+  color: #00d2aa;
+}
+
+.snake-btn {
+  font-family: "Fredoka", sans-serif;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  background: linear-gradient(160deg, #00d2aa, #00b894);
+  color: white;
+  box-shadow: 0 5px 0 #00966e, 0 8px 20px rgba(0, 184, 148, 0.35);
+  transition: top 0.1s ease;
+  position: relative;
+  top: 0;
+}
+
+.snake-btn:hover { top: -2px; }
+.snake-btn:active { top: 3px; box-shadow: 0 2px 0 #00966e; }
+
+.snake-game-over h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2rem;
+  color: #ff7675;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.snake-final-score {
+  font-size: 1.3rem !important;
+  color: white !important;
+}
+
+.snake-new-record {
+  font-size: 1.2rem !important;
+  color: #ffeaa7 !important;
+  font-weight: 700;
+  animation: snakeBounce 0.5s ease infinite alternate;
+}
+
+@keyframes snakeBounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}
+
+.sticker-choice-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.snake-btn-reject {
+  background: linear-gradient(160deg, #636e72, #b2bec3) !important;
+  box-shadow: 0 5px 0 #485460, 0 8px 20px rgba(99, 110, 114, 0.35) !important;
+  font-size: 0.9rem !important;
+}
+
+.snake-btn-reject:active {
+  box-shadow: 0 2px 0 #485460 !important;
+}
+
+.snake-controls-info {
+  display: flex;
+  gap: 24px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.snake-mobile-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.snake-control-row {
+  display: flex;
+  gap: 6px;
+}
+
+.snake-mobile-controls button {
+  width: 68px;
+  height: 68px;
+  font-size: 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  background: var(--card-bg);
+  color: #00d2aa;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: "Fredoka", sans-serif;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.1s;
+}
+
+.snake-mobile-controls button:active {
+  transform: scale(0.95);
+}
+
+/* === Sticker popup === */
+.snake-sticker-popup h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+  color: #ffeaa7;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.sticker-earned-emoji {
+  font-size: 4rem;
+  animation: stickerBounce 0.6s ease infinite alternate;
+}
+
+@keyframes stickerBounce {
+  from { transform: scale(1) rotate(-5deg); }
+  to { transform: scale(1.2) rotate(5deg); }
+}
+
+.sticker-earned-title {
+  color: #ffeaa7 !important;
+}
+
+.sticker-earned-name {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 700;
+}
+
+.sticker-earned-desc {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.snake-earned-row {
+  display: flex;
+  gap: 6px;
+  font-size: 1.5rem;
+}
+
+.snake-earned-mini {
+  animation: stickerPop 0.3s ease;
+}
+
+@keyframes stickerPop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* === Sticker verzameling === */
+.sticker-collection-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sticker-collection {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 1.5rem;
+  width: 90vw;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.sticker-collection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sticker-collection-header h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.6rem;
+  color: var(--text-color);
+}
+
+.sticker-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.sticker-close:hover {
+  opacity: 1;
+}
+
+.sticker-progress {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+}
+
+.sticker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border-radius: 16px;
+  transition: transform 0.2s;
+}
+
+.sticker-earned {
+  background: linear-gradient(135deg, rgba(255, 234, 167, 0.2), rgba(0, 210, 170, 0.15));
+  border: 2px solid rgba(255, 234, 167, 0.4);
+}
+
+.sticker-earned:hover {
+  transform: scale(1.08);
+}
+
+.sticker-locked {
+  background: rgba(128, 128, 128, 0.1);
+  border: 2px dashed rgba(128, 128, 128, 0.2);
+  opacity: 0.5;
+}
+
+.sticker-emoji {
+  font-size: 2.2rem;
+}
+
+.sticker-item-name {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.sticker-item-score {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.7rem;
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+/* Pijltjesknoppen altijd zichtbaar, tekst alleen op desktop */
+.snake-controls-info {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .snake-controls-info {
+    display: flex;
+  }
+}

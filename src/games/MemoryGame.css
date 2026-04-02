@@ -1,0 +1,555 @@
+.memory-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 3.5rem 1rem 1rem;
+  width: 100%;
+  animation: screenEnter 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.memory-back-btn {
+  position: fixed;
+  top: max(0.75rem, env(safe-area-inset-top, 0.75rem));
+  left: max(0.75rem, env(safe-area-inset-left, 0.75rem));
+  background: var(--card-bg);
+  border: none;
+  border-radius: 14px;
+  padding: 0.5rem 1rem;
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-color);
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s;
+  z-index: 200;
+}
+
+.memory-back-btn:hover {
+  transform: scale(1.05);
+}
+
+.memory-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* === Menu === */
+.memory-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.memory-menu-text {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.memory-diff-cards {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.memory-diff-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 1.5rem 1.2rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-family: "Fredoka", sans-serif;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-width: 120px;
+}
+
+.memory-diff-card:hover {
+  transform: translateY(-4px);
+}
+
+.memory-diff-easy {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+  box-shadow: 0 5px 0 #00966e, 0 8px 20px rgba(0, 184, 148, 0.35);
+}
+
+.memory-diff-normal {
+  background: linear-gradient(135deg, #fdcb6e, #e17055);
+  box-shadow: 0 5px 0 #c0392b, 0 8px 20px rgba(225, 112, 85, 0.35);
+}
+
+.memory-diff-hard {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  box-shadow: 0 5px 0 #4834c9, 0 8px 20px rgba(108, 92, 231, 0.35);
+}
+
+.memory-mode-2p {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+  box-shadow: 0 5px 0 #00966e, 0 8px 20px rgba(0, 184, 148, 0.35);
+}
+
+.memory-mode-cpu {
+  background: linear-gradient(135deg, #e17055, #fdcb6e);
+  box-shadow: 0 5px 0 #c0392b, 0 8px 20px rgba(225, 112, 85, 0.35);
+}
+
+.memory-thinking {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1rem;
+  color: #ffeaa7;
+  animation: thinkingPulse 1s ease-in-out infinite;
+}
+
+@keyframes thinkingPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.memory-mode-levels {
+  background: linear-gradient(135deg, #ffc312, #ee5a24);
+  box-shadow: 0 5px 0 #b33000, 0 8px 20px rgba(238, 90, 36, 0.35);
+}
+
+/* === Level Grid === */
+.memory-level-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.memory-level-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 6px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-family: "Fredoka", sans-serif;
+  transition: transform 0.2s;
+}
+
+.memory-level-unlocked {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: white;
+  box-shadow: 0 3px 0 #4834c9;
+}
+
+.memory-level-unlocked:hover {
+  transform: translateY(-3px);
+}
+
+.memory-level-locked {
+  background: rgba(128, 128, 128, 0.2);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: default;
+}
+
+.memory-level-num {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.memory-level-pairs {
+  font-size: 0.6rem;
+  opacity: 0.7;
+}
+
+.memory-level-stars {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.star-earned { color: #ffc312; }
+.star-empty { color: rgba(255, 255, 255, 0.25); }
+
+/* Level info in scoreboard */
+.memory-level-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.memory-level-label {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffeaa7;
+}
+
+.memory-level-pairs-info {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Stars on level complete */
+.memory-stars-display {
+  display: flex;
+  gap: 8px;
+}
+
+.memory-star-big {
+  font-size: 3rem;
+}
+
+.memory-star-big.star-earned {
+  color: #ffc312;
+  text-shadow: 0 0 20px rgba(255, 195, 18, 0.6);
+  animation: starPop 0.5s ease;
+}
+
+@keyframes starPop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.memory-star-big.star-empty {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.memory-diff-icon {
+  font-size: 2.5rem;
+}
+
+.memory-diff-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.memory-diff-desc {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* === Scoreboard === */
+.memory-scoreboard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.memory-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 16px;
+  border-radius: 14px;
+  transition: all 0.3s;
+}
+
+.memory-player-active {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.memory-player-label {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.memory-player-active .memory-player-label {
+  color: #ffeaa7;
+}
+
+.memory-player-score {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.memory-moves {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.memory-moves-label {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.memory-moves-value {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* === Card Grid === */
+.memory-grid {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  max-width: 620px;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  min-height: 70px;
+  perspective: 600px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.memory-card:disabled {
+  cursor: default;
+}
+
+.memory-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
+}
+
+.memory-card-flipped .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-card-front,
+.memory-card-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  font-size: 2.8rem;
+}
+
+.memory-card-front {
+  background: linear-gradient(135deg, #a29bfe, #c4b5fd);
+  box-shadow: 0 4px 12px rgba(162, 155, 254, 0.3);
+  font-size: 2rem;
+}
+
+.memory-card-back {
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: rotateY(180deg);
+}
+
+.memory-card-matched .memory-card-back {
+  background: linear-gradient(135deg, rgba(0, 184, 148, 0.15), rgba(0, 206, 201, 0.15));
+  border: 2px solid rgba(0, 184, 148, 0.4);
+}
+
+.memory-card-matched .memory-card-inner {
+  animation: matchPop 0.4s ease;
+}
+
+@keyframes matchPop {
+  0% { transform: rotateY(180deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.15); }
+  100% { transform: rotateY(180deg) scale(1); }
+}
+
+/* Hover effect only on non-flipped cards */
+.memory-card:not(.memory-card-flipped):not(.memory-card-matched):hover .memory-card-inner {
+  transform: scale(1.05);
+}
+
+/* === Finished === */
+.memory-finished {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: screenEnter 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.memory-trophy {
+  font-size: 4rem;
+  animation: trophyBounce 0.6s ease infinite alternate;
+}
+
+@keyframes trophyBounce {
+  from { transform: scale(1) rotate(-3deg); }
+  to { transform: scale(1.1) rotate(3deg); }
+}
+
+.memory-winner {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.memory-final-scores {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.memory-final-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: "Fredoka", sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.memory-final-score {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.memory-vs {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.memory-final-moves {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.memory-finish-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.memory-btn {
+  font-family: "Fredoka", sans-serif;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  background: linear-gradient(160deg, #6c5ce7, #a29bfe);
+  color: white;
+  box-shadow: 0 5px 0 #4834c9, 0 8px 20px rgba(108, 92, 231, 0.35);
+  transition: top 0.1s ease;
+  position: relative;
+  top: 0;
+}
+
+.memory-btn:hover { top: -2px; }
+.memory-btn:active { top: 3px; box-shadow: 0 2px 0 #4834c9; }
+
+.memory-btn-menu {
+  background: linear-gradient(160deg, #636e72, #b2bec3);
+  box-shadow: 0 5px 0 #485460, 0 8px 20px rgba(99, 110, 114, 0.35);
+}
+
+.memory-btn-menu:active { box-shadow: 0 2px 0 #485460; }
+
+/* === Sticker Popup === */
+.memory-sticker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.memory-sticker-popup {
+  background: var(--card-bg);
+  border-radius: 28px;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: stickerPopIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes stickerPopIn {
+  from { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.memory-sticker-emoji {
+  font-size: 4.5rem;
+  animation: stickerWiggle 0.6s ease infinite alternate;
+}
+
+@keyframes stickerWiggle {
+  from { transform: scale(1) rotate(-5deg); }
+  to { transform: scale(1.15) rotate(5deg); }
+}
+
+.memory-sticker-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffc312;
+}
+
+.memory-sticker-name {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.memory-sticker-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+/* === Mobile === */
+@media (max-width: 480px) {
+  .memory-diff-cards {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .memory-diff-card {
+    flex-direction: row;
+    padding: 1rem;
+    gap: 12px;
+  }
+
+  .memory-card-front,
+  .memory-card-back {
+    font-size: 1.5rem;
+  }
+}
