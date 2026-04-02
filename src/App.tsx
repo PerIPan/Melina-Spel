@@ -157,7 +157,7 @@ export default function App() {
 
   const candies = useMemo(() => {
     const emojis = ['🍬', '🍭', '🍫', '🍩', '🧁', '🍪', '🍰', '🎂', '🍡', '🍮', '🍦', '🍧', '🍨', '🍬', '🍭', '🍫', '🍩', '🧁', '🍪', '🍰'];
-    return emojis.map((emoji, i) => ({
+    return emojis.map((emoji) => ({
       emoji,
       left: Math.random() * 100,
       top: Math.random() * 100,
