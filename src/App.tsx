@@ -155,8 +155,40 @@ export default function App() {
     return <MemoryGame onBack={() => { setMemoryStickers(loadMemoryStickers()); setScreen('welcome'); }} />;
   }
 
+  const candies = useMemo(() => {
+    const emojis = ['🍬', '🍭', '🍫', '🍩', '🧁', '🍪', '🍰', '🎂', '🍡', '🍮', '🍦', '🍧', '🍨', '🍬', '🍭', '🍫', '🍩', '🧁', '🍪', '🍰'];
+    return emojis.map((emoji, i) => ({
+      emoji,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: 1.2 + Math.random() * 1.5,
+      delay: Math.random() * 8,
+      duration: 6 + Math.random() * 6,
+      rotate: Math.random() * 360,
+    }));
+  }, []);
+
   return (
     <div className="welcome-screen">
+      <div className="candy-background">
+        {candies.map((c, i) => (
+          <span
+            key={i}
+            className="candy-piece"
+            style={{
+              left: `${c.left}%`,
+              top: `${c.top}%`,
+              fontSize: `${c.size}rem`,
+              animationDelay: `${c.delay}s`,
+              animationDuration: `${c.duration}s`,
+              transform: `rotate(${c.rotate}deg)`,
+            }}
+          >
+            {c.emoji}
+          </span>
+        ))}
+      </div>
+
       <div className="welcome-floating-emojis">
         {['🎮', '🐍', '🐾', '🎯', '🏆'].map((emoji, i) => (
           <span
