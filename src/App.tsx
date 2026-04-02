@@ -143,18 +143,6 @@ export default function App() {
     }
   }, []);
 
-  if (screen === 'snake') {
-    return <SnakeGame onBack={() => { setSnakeStickers(loadSnakeStickers()); setScreen('welcome'); }} />;
-  }
-
-  if (screen === 'animal') {
-    return <AnimalGame onBack={() => { setAnimalStickers(loadAnimalStickers()); setScreen('welcome'); }} />;
-  }
-
-  if (screen === 'memory') {
-    return <MemoryGame onBack={() => { setMemoryStickers(loadMemoryStickers()); setScreen('welcome'); }} />;
-  }
-
   const candies = useMemo(() => {
     const emojis = ['🍬', '🍭', '🍫', '🍩', '🧁', '🍪', '🍰', '🎂', '🍡', '🍮', '🍦', '🍧', '🍨', '🍬', '🍭', '🍫', '🍩', '🧁', '🍪', '🍰'];
     return emojis.map((emoji) => ({
@@ -167,6 +155,18 @@ export default function App() {
       rotate: Math.random() * 360,
     }));
   }, []);
+
+  if (screen === 'snake') {
+    return <SnakeGame onBack={() => { setSnakeStickers(loadSnakeStickers()); setScreen('welcome'); }} />;
+  }
+
+  if (screen === 'animal') {
+    return <AnimalGame onBack={() => { setAnimalStickers(loadAnimalStickers()); setScreen('welcome'); }} />;
+  }
+
+  if (screen === 'memory') {
+    return <MemoryGame onBack={() => { setMemoryStickers(loadMemoryStickers()); setScreen('welcome'); }} />;
+  }
 
   return (
     <div className="welcome-screen">
