@@ -177,6 +177,12 @@ body {
 }
 .game-card-draw:active { box-shadow: 0 2px 0 #d63ba0; }
 
+.game-card-reken {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  box-shadow: 0 6px 0 #e08e3c, 0 10px 24px rgba(253, 160, 133, 0.35);
+}
+.game-card-reken:active { box-shadow: 0 2px 0 #e08e3c; }
+
 .game-card-icon {
   font-size: 3.5rem;
 }

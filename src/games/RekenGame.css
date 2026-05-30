@@ -1,0 +1,117 @@
+.reken-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(160deg, #f6d365, #fda085);
+  transition: background 0.3s;
+  overflow: hidden;
+}
+.reken-good { background: linear-gradient(160deg, #a8e063, #56ab2f); }
+.reken-wrong { background: linear-gradient(160deg, #ffd3a5, #fd9b87); }
+
+.reken-topbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  box-sizing: border-box;
+}
+.reken-back-btn {
+  font-size: 1.5rem;
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+.reken-title { font-size: 1.4rem; font-weight: 800; margin: 0; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.reken-score {
+  font-size: 1.2rem; font-weight: 800; color: #fff;
+  background: rgba(0,0,0,0.15); border-radius: 12px; padding: 0.3rem 0.8rem;
+}
+
+.reken-levelbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  padding: 0.2rem 0.8rem;
+  text-align: center;
+}
+
+.reken-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 0;
+}
+.reken-problem {
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.18);
+  border-radius: 24px;
+  padding: 1rem 2rem;
+}
+.reken-answer-slot { color: #ffe96b; }
+.reken-feedback {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: #fff;
+  border-radius: 16px;
+  padding: 0.6rem 1.2rem;
+}
+.reken-feedback.good { color: #2e7d32; }
+.reken-feedback.wrong { color: #c0392b; }
+
+.reken-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  width: min(92vw, 360px);
+  padding: 0.8rem;
+  box-sizing: border-box;
+}
+.reken-key {
+  font-size: 1.8rem;
+  font-weight: 800;
+  padding: 0.9rem 0;
+  border: none;
+  border-radius: 16px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+}
+.reken-key:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.15); }
+.reken-key:disabled { opacity: 0.6; cursor: default; }
+.reken-key-ok { background: #4caf50; color: #fff; }
+.reken-key-wide { background: #ffcf6b; }
+
+.reken-sticker-popup {
+  position: fixed;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 4px solid #ffd166;
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  z-index: 50;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+.reken-sticker-popup .emoji { font-size: 3rem; display: block; }

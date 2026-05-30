@@ -3,7 +3,9 @@ import { SnakeGame } from './games/SnakeGame';
 import { AnimalGame } from './games/AnimalGame';
 import { MemoryGame } from './games/MemoryGame';
 import { DrawGame } from './games/DrawGame';
+import { RekenGame } from './games/RekenGame';
 import { STICKER_DEFS as DRAW_STICKER_DEFS } from './games/drawHelpers';
+import { REKEN_STICKER_DEFS } from './games/rekenHelpers';
 import { isMuted, setMuted } from './utils/sounds';
 import { loadTree } from './utils/storage';
 import type { TreeNode } from './types';
@@ -14,7 +16,7 @@ function countAnimals(node: TreeNode): number {
   return countAnimals(node.yes) + countAnimals(node.no);
 }
 
-type Screen = 'welcome' | 'snake' | 'animal' | 'memory' | 'tekenen';
+type Screen = 'welcome' | 'snake' | 'animal' | 'memory' | 'tekenen' | 'rekenen';
 
 interface Sticker {
   emoji: string;
@@ -100,6 +102,13 @@ function loadDrawStickers(): string[] {
   } catch { return []; }
 }
 
+function loadRekenStickers(): string[] {
+  try {
+    const saved = localStorage.getItem('rekenStickers');
+    return saved ? JSON.parse(saved) : [];
+  } catch { return []; }
+}
+
 export default function App() {
   const [screen, setScreen] = useState<Screen>('welcome');
   const [muted, setMutedState] = useState(isMuted);
@@ -108,6 +117,7 @@ export default function App() {
   const [animalStickers, setAnimalStickers] = useState(loadAnimalStickers);
   const [memoryStickers, setMemoryStickers] = useState(loadMemoryStickers);
   const [drawStickers, setDrawStickers] = useState(loadDrawStickers);
+  const [rekenStickers, setRekenStickers] = useState(loadRekenStickers);
   const [showStickers, setShowStickers] = useState(false);
   const [hiddenStickers, setHiddenStickers] = useState<string[]>(() => {
     try {
@@ -115,9 +125,9 @@ export default function App() {
       return saved ? JSON.parse(saved) : [];
     } catch { return []; }
   });
-  const totalStickers = snakeStickers.length + animalStickers.length + memoryStickers.length + drawStickers.length;
+  const totalStickers = snakeStickers.length + animalStickers.length + memoryStickers.length + drawStickers.length + rekenStickers.length;
   const visibleStickers = totalStickers - hiddenStickers.length;
-  const totalPossible = STICKER_MILESTONES.length + ANIMAL_STICKER_DEFS.length + MEMORY_STICKER_DEFS.length + DRAW_STICKER_DEFS.length;
+  const totalPossible = STICKER_MILESTONES.length + ANIMAL_STICKER_DEFS.length + MEMORY_STICKER_DEFS.length + DRAW_STICKER_DEFS.length + REKEN_STICKER_DEFS.length;
 
   const toggleHidden = (key: string) => {
     setHiddenStickers(prev => {
@@ -182,6 +192,10 @@ export default function App() {
     return <DrawGame onBack={() => { setDrawStickers(loadDrawStickers()); setScreen('welcome'); }} />;
   }
 
+  if (screen === 'rekenen') {
+    return <RekenGame onBack={() => { setRekenStickers(loadRekenStickers()); setScreen('welcome'); }} />;
+  }
+
   return (
     <div className="welcome-screen">
       <div className="candy-background">
@@ -241,6 +255,12 @@ export default function App() {
           <span className="game-card-icon">🎨</span>
           <span className="game-card-title">Tekenen</span>
           <span className="game-card-desc">Teken en kleur!</span>
+        </button>
+
+        <button className="game-card game-card-reken" onClick={() => setScreen('rekenen')}>
+          <span className="game-card-icon">➕</span>
+          <span className="game-card-title">Rekenen</span>
+          <span className="game-card-desc">Word steeds slimmer!</span>
         </button>
       </div>
 
@@ -325,6 +345,26 @@ export default function App() {
               {DRAW_STICKER_DEFS.map(s => {
                 const key = `draw_${s.id}`;
                 const earned = drawStickers.includes(s.id);
+                const hidden = hiddenStickers.includes(key);
+                return (
+                  <div
+                    key={s.id}
+                    className={`sticker-wall-card ${earned ? (hidden ? 'sticker-wall-hidden' : 'sticker-wall-earned') : 'sticker-wall-locked-card'}`}
+                    onClick={() => earned && toggleHidden(key)}
+                  >
+                    <span className="sticker-wall-emoji">{earned ? s.emoji : '🔒'}</span>
+                    <span className="sticker-wall-name">{earned ? s.name : '???'}</span>
+                    {earned && hidden && <span className="sticker-hidden-badge">verborgen</span>}
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className="sticker-wall-game">➕ Rekenen</p>
+            <div className="sticker-wall-items">
+              {REKEN_STICKER_DEFS.map(s => {
+                const key = `reken_${s.id}`;
+                const earned = rekenStickers.includes(s.id);
                 const hidden = hiddenStickers.includes(key);
                 return (
                   <div
