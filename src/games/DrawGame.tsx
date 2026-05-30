@@ -18,6 +18,7 @@ const STAMPS = ['🐱', '🐶', '🐰', '🦋', '🌸', '⭐', '❤️', '🌈',
 
 export function DrawGame({ onBack }: DrawGameProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const drawing = useRef(false);
   const last = useRef<{ x: number; y: number } | null>(null);
@@ -218,7 +219,7 @@ export function DrawGame({ onBack }: DrawGameProps) {
     const svg = buildSvgMarkup(page, '#bbbbbb');
     const img = new Image();
     img.onload = () => {
-      const s = Math.min(rect.width, rect.height) * 0.9;
+      const s = Math.min(rect.width, rect.height) * 0.98;
       const x = (rect.width - s) / 2;
       const y = (rect.height - s) / 2;
       ctx.drawImage(img, x, y, s, s);
@@ -226,6 +227,33 @@ export function DrawGame({ onBack }: DrawGameProps) {
     img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
     activePageIsColoring.current = true;
     setShowPages(false);
+    playClick();
+  };
+
+  // Eigen plaatje van het apparaat laden om in te kleuren (vult het hele blad).
+  const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const ctx = ctxRef.current, canvas = canvasRef.current;
+      if (!ctx || !canvas) return;
+      snapshot();
+      const rect = canvas.parentElement!.getBoundingClientRect();
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, rect.width, rect.height);
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(rect.width / img.width, rect.height / img.height) * 0.98;
+        const w = img.width * scale;
+        const h = img.height * scale;
+        ctx.drawImage(img, (rect.width - w) / 2, (rect.height - h) / 2, w, h);
+      };
+      img.src = reader.result as string;
+      activePageIsColoring.current = true;
+    };
+    reader.readAsDataURL(file);
     playClick();
   };
 
@@ -305,6 +333,14 @@ export function DrawGame({ onBack }: DrawGameProps) {
 
         <div className="draw-picker-row">
           <button className="draw-tool-btn" onClick={() => { setShowPages(true); playClick(); }}>📄</button>
+          <button className="draw-tool-btn" onClick={() => fileRef.current?.click()} aria-label="eigen plaatje">📷</button>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={onUpload}
+          />
           <button className="draw-tool-btn" onClick={undo}>↩️</button>
           <button className="draw-tool-btn" onClick={() => { setConfirmClear(true); playClick(); }}>🗑️</button>
           <button className="draw-tool-btn" onClick={save}>💾</button>
