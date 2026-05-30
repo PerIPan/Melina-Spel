@@ -115,3 +115,50 @@
   box-shadow: 0 8px 30px rgba(0,0,0,0.25);
 }
 .reken-sticker-popup .emoji { font-size: 3rem; display: block; }
+
+/* Menu */
+.reken-menu-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  text-align: center;
+}
+.reken-menu-label { color: #fff; font-weight: 800; font-size: 1.3rem; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.reken-menu-sub { color: #fff; font-weight: 700; margin: 0 0 0.5rem; opacity: 0.95; }
+.reken-groep-row { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.reken-groep-btn {
+  width: 56px; height: 56px;
+  font-size: 1.6rem; font-weight: 800;
+  border: 3px solid transparent; border-radius: 16px;
+  background: #fff; color: #333; cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+}
+.reken-groep-btn.active { border-color: #4caf50; background: #eaffea; }
+.reken-mode-row { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
+.reken-mode-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+  width: 160px; padding: 1.1rem 0.8rem;
+  font-size: 1.15rem; font-weight: 800;
+  border: none; border-radius: 20px; cursor: pointer; color: #fff;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.2);
+}
+.reken-mode-icon { font-size: 2.2rem; }
+.reken-mode-rustig { background: #4caf50; }
+.reken-mode-tempo { background: #ff7043; }
+.reken-mode-best { font-size: 0.85rem; font-weight: 700; opacity: 0.95; }
+
+/* Tempo resultaat */
+.reken-done-card {
+  background: #fff; border-radius: 24px; padding: 1.5rem 2rem; text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.reken-done-big { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+.reken-done-score { font-size: 2rem; margin: 0.5rem 0; }
+.reken-done-score b { color: #2e7d32; font-size: 2.6rem; }
+.reken-done-best { color: #555; font-weight: 700; margin-bottom: 1rem; }
+.reken-done-buttons { display: flex; gap: 0.8rem; justify-content: center; }
+.reken-done-buttons .reken-key { padding: 0.7rem 1.3rem; font-size: 1.2rem; }
