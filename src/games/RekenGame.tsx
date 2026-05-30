@@ -200,7 +200,7 @@ export function RekenGame({ onBack }: RekenGameProps) {
             </button>
             <button className="reken-mode-btn reken-mode-tempo" onClick={startTempo}>
               <span className="reken-mode-icon">⏱️</span>
-              Tempo (1 minuut)
+              Tempo (2 minuten)
               <span className="reken-mode-best">Beste: {tempoBestFor(groep)} goed</span>
             </button>
           </div>
@@ -253,7 +253,7 @@ export function RekenGame({ onBack }: RekenGameProps) {
       <div className="reken-topbar">
         <button className="reken-back-btn" onClick={() => { playClick(); setPhase('menu'); }}>↩️</button>
         <h1 className="reken-title">{isTempo ? '⏱️ Tempo' : '🧠 Rekenen'}</h1>
-        <div className="reken-score">{isTempo ? `⏰ ${timeLeft}s` : `⭐ ${correct}`}</div>
+        <div className="reken-score">{isTempo ? `⏰ ${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}` : `⭐ ${correct}`}</div>
       </div>
 
       <div className="reken-levelbar">

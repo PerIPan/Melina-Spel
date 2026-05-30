@@ -88,7 +88,7 @@ export function generateProblem(groep: number, rng: () => number = Math.random):
 }
 
 /** Tempo rekenen (zoals op school in NL): zoveel mogelijk goed binnen de tijd. */
-export const TEMPO_SECONDS = 60;
+export const TEMPO_SECONDS = 120;
 
 export interface RekenStickerDef {
   id: string;
