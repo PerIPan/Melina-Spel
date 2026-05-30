@@ -11,7 +11,7 @@ interface DrawGameProps {
   onBack: () => void;
 }
 
-type Tool = 'brush' | 'eraser' | 'rainbow' | 'stamp';
+type Tool = 'brush' | 'eraser' | 'rainbow' | 'stamp' | 'text';
 
 const SIZES = [4, 8, 16];
 const STAMPS = ['🐱', '🐶', '🐰', '🦋', '🌸', '⭐', '❤️', '🌈', '🚗', '🐟'];
@@ -106,6 +106,24 @@ export function DrawGame({ onBack }: DrawGameProps) {
       }
       stats.current.stampsPlaced += 1;
       checkStickers();
+      return;
+    }
+
+    if (tool === 'text') {
+      const ctx = ctxRef.current;
+      const txt = window.prompt('Wat wil je schrijven?');
+      if (ctx && txt) {
+        snapshot();
+        const p = pos(e);
+        ctx.font = `${size * 4}px 'Comic Sans MS', 'Trebuchet MS', Arial, sans-serif`;
+        ctx.fillStyle = color;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillText(txt, p.x, p.y);
+        stats.current.strokes += 1;
+        if (!stats.current.colorsUsed.includes(color)) stats.current.colorsUsed.push(color);
+        checkStickers();
+      }
       return;
     }
 
@@ -268,6 +286,11 @@ export function DrawGame({ onBack }: DrawGameProps) {
             className={`draw-tool-btn ${tool === 'rainbow' ? 'active' : ''}`}
             onClick={() => { setTool('rainbow'); playClick(); }}
           >🌈</button>
+          <button
+            className={`draw-tool-btn ${tool === 'text' ? 'active' : ''}`}
+            onClick={() => { setTool('text'); playClick(); }}
+            aria-label="schrijven"
+          >🔤</button>
         </div>
 
         <div className="draw-picker-row">
