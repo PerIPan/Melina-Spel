@@ -171,6 +171,12 @@ body {
 }
 .game-card-memory:active { box-shadow: 0 2px 0 #c0392b; }
 
+.game-card-draw {
+  background: linear-gradient(135deg, #ff6bcb, #ffd166);
+  box-shadow: 0 6px 0 #d63ba0, 0 10px 24px rgba(255, 107, 203, 0.35);
+}
+.game-card-draw:active { box-shadow: 0 2px 0 #d63ba0; }
+
 .game-card-icon {
   font-size: 3.5rem;
 }

@@ -1,0 +1,91 @@
+.draw-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  touch-action: none;
+}
+.draw-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+.draw-back-btn {
+  font-size: 1.5rem;
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 14px;
+  background: #ffd166;
+  cursor: pointer;
+}
+.draw-title { font-size: 1.4rem; font-weight: 800; margin: 0; }
+.draw-canvas-wrap { flex: 1; position: relative; min-height: 0; }
+.draw-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #ffffff;
+  touch-action: none;
+}
+.draw-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.6rem;
+  background: #f3f3f7;
+}
+.draw-tool-btn {
+  font-size: 1.4rem;
+  min-width: 52px;
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid transparent;
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+.draw-tool-btn.active { border-color: #4363d8; }
+.draw-swatch {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #ccc;
+  cursor: pointer;
+  padding: 0;
+}
+.draw-swatch.active { box-shadow: 0 0 0 3px #4363d8; }
+.draw-size-dot { border-radius: 50%; background: #333; }
+.draw-sticker-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 4px solid #ffd166;
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  z-index: 50;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.draw-sticker-popup .emoji { font-size: 3rem; display: block; }
+.draw-confirm-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 60;
+}
+.draw-confirm-box {
+  background: #fff; border-radius: 20px; padding: 1.5rem;
+  text-align: center; max-width: 360px;
+}
+.draw-confirm-box p { margin-top: 0; font-size: 1.2rem; }
+.draw-confirm-box button { margin: 0.5rem; padding: 0.6rem 1.2rem; font-size: 1.1rem; border-radius: 12px; border: none; cursor: pointer; }
+.draw-confirm-yes { background: #e6194b; color: #fff; }
+.draw-confirm-no { background: #ccc; }
+.draw-picker-row { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
